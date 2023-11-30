@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  max-width: 400px;
+  height: 65px;
+  margin: auto;
+}
+
+.solution-container {
+  margin-top: 40px;
+}
+
+.box {
+  border-radius: 5px;
+  width: 60px;
+  height: 60px;
+  box-shadow: 0 -3px 10px 5px #5c7395;
+  font-size: 40px;
+  font-family: sans-serif;
+  text-align: center;
+  margin-left: 5px;
+}
+
+.isSolution {
+  background-color: #333333e3;
+}
+
+.solutionText {
+  padding-top: 5px;
+  margin: 0;
+  color: #fff;
+}
+
+.isLetter {
+  background-color: #cccccc;
+  box-shadow: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.letterText {
+  padding-top: 5px;
+  margin: 0;
+  color: #000;
+}

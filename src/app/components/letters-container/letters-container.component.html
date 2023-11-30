@@ -1,0 +1,3 @@
+<div class="container solution-container" [style]="{'--num-box': finalLettersList.length}">
+  <app-letter-box *ngFor="let letter of finalLettersList" [isSolution]="false" [letter]="letter"></app-letter-box>
+</div>

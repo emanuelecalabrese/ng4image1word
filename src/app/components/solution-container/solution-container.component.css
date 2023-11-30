@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  max-width: 975px;
+  height: 65px;
+  margin: auto;
+}
+
+/* To have a dynamic width for the container */
+.solution-container {
+  width: calc(60px * var(--num-box) + 5px * (var(--num-box) - 1));
+}
