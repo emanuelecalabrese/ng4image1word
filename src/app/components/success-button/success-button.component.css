@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  margin-top: 50px;
+  border-radius: 50px;
+  background: green;
+  cursor: pointer;
+}
+
+.successText {
+  font-family: sans-serif;
+  text-align: center;
+  font-size: 40px;
+  color: white;
+}

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { LetterService } from 'src/app/services/letter-service.service';
 
 @Component({
@@ -10,12 +10,14 @@ export class LetterBoxComponent {
   @Input() isSolution!: boolean;
   @Input() letter?: string; // this is for the letter container
   @Input() selectedLetter?: string;
+  @Input() paragraphId!: string;
 
   constructor(private letterService: LetterService) {
-
   }
 
   onClick() {
-    this.letterService.setLetterClicked(this.letter!);
+    if(!this.isSolution){
+      this.letterService.setLetterClicked(this.letter!);
+    }
   }
 }

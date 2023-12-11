@@ -1,4 +1,4 @@
 <div class="box" [ngClass]="{ 'isSolution': isSolution, 'isLetter': !isSolution }" (click)="onClick()">
-  <p [ngClass]="{'solutionText': isSolution, 'letterText': !isSolution}" *ngIf="!isSolution">{{letter}}</p>
-  <p [ngClass]="{'solutionText': isSolution, 'letterText': !isSolution}" *ngIf="isSolution">{{selectedLetter}}</p>
+  <p id="letter" [ngClass]="{'solutionText': isSolution, 'letterText': !isSolution}" *ngIf="!isSolution">{{letter}}</p>
+  <p [id]="paragraphId" [ngClass]="{'solutionText': isSolution, 'letterText': !isSolution}" *ngIf="isSolution"></p>
 </div>

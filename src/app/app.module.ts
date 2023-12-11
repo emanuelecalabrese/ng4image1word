@@ -6,6 +6,7 @@ import { ImagesContainerComponent } from './components/images-container/images-c
 import { SolutionContainerComponent } from './components/solution-container/solution-container.component';
 import { LetterBoxComponent } from './components/letter-box/letter-box.component';
 import { LettersContainerComponent } from './components/letters-container/letters-container.component';
+import { SuccessButtonComponent } from './components/success-button/success-button.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { LettersContainerComponent } from './components/letters-container/letter
     ImagesContainerComponent,
     SolutionContainerComponent,
     LetterBoxComponent,
-    LettersContainerComponent
+    LettersContainerComponent,
+    SuccessButtonComponent
   ],
   imports: [
     BrowserModule

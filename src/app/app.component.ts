@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Word } from './models/word';
+import { LetterService } from './services/letter-service.service';
 
 @Component({
   selector: 'app-root',
@@ -57,10 +58,19 @@ export class AppComponent implements OnInit {
   ];
   word!: Word;
   letters!: string[];
+  isSuccess: boolean = false;
+
+  constructor(private letterService: LetterService) {
+
+  }
 
   ngOnInit(): void {
     this.word = this.randomWord(this.words);
     this.letters = this.word.title.split("");
+    this.letterService.isSuccess.subscribe(success => {
+      if(success !== this.isSuccess)
+          this.isSuccess = success;
+    });
   }
 
   randomWord(words: Word[]): Word {
