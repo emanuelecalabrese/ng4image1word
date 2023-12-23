@@ -23,6 +23,10 @@ export class SolutionContainerComponent implements OnInit{
       this.selectedLetter = letter;
       this.assignLetter(this.selectedLetter);
     });
+
+    this.letterService.isNewGame.subscribe((ng) => {
+      if(ng) this.resetSolution()
+    })
   }
 
   assignLetter(wordToInsert: string): void {
@@ -44,12 +48,16 @@ export class SolutionContainerComponent implements OnInit{
     }
     else
     {
-      for (let i = 0; i < this.letters.length; i++) {
-        (document.getElementById(i.toString()) as HTMLParagraphElement).innerText = "";
-      }
-      this.userSolution.splice(0);
-      this.letterIndex = 0;
-      this.letterService.setIsSuccess(false);
+      this.resetSolution();
     }
+  }
+
+  resetSolution(): void {
+    for (let i = 0; i < this.letters.length; i++) {
+      (document.getElementById(i.toString()) as HTMLParagraphElement).innerText = "";
+    }
+    this.userSolution.splice(0);
+    this.letterIndex = 0;
+    this.letterService.setIsSuccess(false);
   }
 }

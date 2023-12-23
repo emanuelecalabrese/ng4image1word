@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Word } from './models/word';
 import { LetterService } from './services/letter-service.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -8,69 +9,41 @@ import { LetterService } from './services/letter-service.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  words: Word[] = [
-    {
-      title: "acqua",
-      images: [
-        '../../../assets/img/water/water1.jpg',
-        '../../../assets/img/water/water2.jpg',
-        '../../../assets/img/water/water3.jpg',
-        '../../../assets/img/water/water4.jpg',
-      ]
-    },
-    {
-      title: "fuoco",
-      images: [
-        '../../../assets/img/fire/fire1.jpg',
-        '../../../assets/img/fire/fire2.jpg',
-        '../../../assets/img/fire/fire3.jpg',
-        '../../../assets/img/fire/fire4.jpg',
-      ]
-    },
-    {
-      title: "sabbia",
-      images: [
-        '../../../assets/img/sand/sand1.jpg',
-        '../../../assets/img/sand/sand2.jpg',
-        '../../../assets/img/sand/sand3.jpg',
-        '../../../assets/img/sand/sand4.jpg',
-
-      ]
-    },
-    {
-      title: "topo",
-      images: [
-        '../../../assets/img/mouse/mouse1.jpg',
-        '../../../assets/img/mouse/mouse2.jpg',
-        '../../../assets/img/mouse/mouse3.jpg',
-        '../../../assets/img/mouse/mouse4.jpg',
-      ]
-    },
-    {
-      title: "panino",
-      images: [
-        '../../../assets/img/sandwich/sandwich1.jpg',
-        '../../../assets/img/sandwich/sandwich2.jpg',
-        '../../../assets/img/sandwich/sandwich3.jpg',
-        '../../../assets/img/sandwich/sandwich4.jpg',
-      ]
-    }
-  ];
+  words: Word[] = [];
   word!: Word;
-  letters!: string[];
+  letters?: string[];
   isSuccess: boolean = false;
 
-  constructor(private letterService: LetterService) {
+  constructor(private letterService: LetterService, private http: HttpClient) {
 
   }
 
   ngOnInit(): void {
-    this.word = this.randomWord(this.words);
-    this.letters = this.word.title.split("");
+    this.http.get<Word[]>('../assets/db.json').subscribe(res => {
+      this.words = res.map((data) => ({
+        ...data,
+        images: data.images?.map(image => `../assets/${image}`)
+      }))
+      this.word = this.randomWord(this.words);
+      this.letters = this.word.title?.split("");
+    });
+
     this.letterService.isSuccess.subscribe(success => {
       if(success !== this.isSuccess)
           this.isSuccess = success;
     });
+
+    this.letterService.isNewGame.subscribe(() => {
+      this.isSuccess = false;
+      this.letterService.setIsSuccess(this.isSuccess);
+
+      this.newGame();
+    })
+  }
+
+  newGame(): void {
+    this.word = this.randomWord(this.words);
+    this.letters = this.word.title?.split("");
   }
 
   randomWord(words: Word[]): Word {

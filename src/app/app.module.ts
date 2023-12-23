@@ -7,6 +7,7 @@ import { SolutionContainerComponent } from './components/solution-container/solu
 import { LetterBoxComponent } from './components/letter-box/letter-box.component';
 import { LettersContainerComponent } from './components/letters-container/letters-container.component';
 import { SuccessButtonComponent } from './components/success-button/success-button.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SuccessButtonComponent } from './components/success-button/success-butt
     SuccessButtonComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

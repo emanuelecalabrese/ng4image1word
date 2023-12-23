@@ -1,4 +1,6 @@
-<app-images-container [images]="word.images"></app-images-container>
-<app-solution-container [word]="word.title" [letters]="letters"></app-solution-container>
-<app-letters-container [word]="word.title" [letters]="letters" *ngIf="!isSuccess"></app-letters-container>
+<ng-container *ngIf="word">
+  <app-images-container [images]="word.images"></app-images-container>
+  <app-solution-container [word]="word.title" [letters]="letters!"></app-solution-container>
+  <app-letters-container [word]="word.title" [letters]="letters!" *ngIf="!isSuccess"></app-letters-container>
+</ng-container>
 <app-success-button *ngIf="isSuccess"></app-success-button>
